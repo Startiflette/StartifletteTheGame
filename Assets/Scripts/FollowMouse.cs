@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FollowMouse : MonoBehaviour {
 
-	public float smoothSpeed = 4f;
+	public float smoothSpeed = 50f;
 
     public Vector3 plan;
 
