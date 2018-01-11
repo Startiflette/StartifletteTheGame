@@ -5,8 +5,8 @@ using UnityEngine;
 public class FollowMouseMovement : MonoBehaviour {
 
 	public float speed = 30.0F;
-	public Canvas canvas;
-	Transform[] imageTransform;
+	GameObject[] pointeurListe;
+	GameObject pointeur;
 
 	float yMinLimit = -Screen.height / 2;
 	float yMaxLimit = Screen.height / 2;
@@ -19,16 +19,16 @@ public class FollowMouseMovement : MonoBehaviour {
 		distance = Screen.height * 0.5f / Mathf.Tan (60 * 0.5f * Mathf.Deg2Rad);
 		float initialX = 0;
 		float initialY = 0;
-		imageTransform = canvas.GetComponentsInChildren<RectTransform> ();
-
-		imageTransform[1].position = new Vector3(initialX, initialY, distance);
+		pointeurListe = GameObject.FindGameObjectsWithTag ("Pointeur");
+		pointeur = pointeurListe [0];
+		pointeur.transform.position = new Vector3(initialX, initialY, distance);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		float origineX = imageTransform[1].position.x;
-		float origineY = imageTransform[1].position.y;
+		float origineX = pointeur.transform.position.x;
+		float origineY = pointeur.transform.position.y;
 		float translationX = Input.GetAxis ("Vertical");
 		float translationY = Input.GetAxis("Horizontal");
 
@@ -38,7 +38,7 @@ public class FollowMouseMovement : MonoBehaviour {
 		float translationFinalY = origineY + translationY * Time.deltaTime*speed;
 		translationFinalY = checkYlimit (translationFinalY);
 
-		imageTransform[1].position = new Vector3(translationFinalX, translationFinalY, distance);
+		pointeur.transform.position = new Vector3(translationFinalX, translationFinalY, distance);
 	}
 
 	private float checkXlimit(float position){
