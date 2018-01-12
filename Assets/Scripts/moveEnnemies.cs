@@ -42,6 +42,10 @@ public class moveEnnemies : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (ennemy == null) {
+			this.enabled = false;
+			return;
+		}
 		if (curWaypoint < waypoints.Length && curWaypoint >= 0) {
 			target = waypoints[curWaypoint].position;
 			moveDirection = target - ennemyTransform.position;

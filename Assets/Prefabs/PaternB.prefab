@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4183653320640728}
   - component: {fileID: 33112722145463302}
   - component: {fileID: 23953977834627794}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere (1)
   m_TagString: patternWayPoint
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4763546407573588}
   - component: {fileID: 33851461450650608}
   - component: {fileID: 23157390900670564}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere (2)
   m_TagString: patternWayPoint
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4462368114066936}
   - component: {fileID: 114741322157538896}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PaternB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 4794799697780570}
   - component: {fileID: 33444031446392546}
   - component: {fileID: 23330496000101880}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere (3)
   m_TagString: patternWayPoint
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 4734117343426708}
   - component: {fileID: 33063164147750588}
   - component: {fileID: 23534436400506698}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: patternWayPoint
   m_Icon: {fileID: 0}

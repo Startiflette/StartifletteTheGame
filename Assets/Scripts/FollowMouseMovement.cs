@@ -8,20 +8,21 @@ public class FollowMouseMovement : MonoBehaviour {
 	GameObject[] pointeurListe;
 	GameObject pointeur;
 
-	float yMinLimit = -Screen.height / 2;
-	float yMaxLimit = Screen.height / 2;
-	float xMinLimit = - Screen.width / 2;
-	float xMaxLimit = Screen.width / 2;
-	float distance;
+	float yMinLimit = 0;
+	float yMaxLimit = Screen.height;
+	float xMinLimit = 0;
+	float xMaxLimit = Screen.width;
+
 	// Use this for initialization
 	void Start () {
 		
-		distance = Screen.height * 0.5f / Mathf.Tan (60 * 0.5f * Mathf.Deg2Rad);
-		float initialX = 0;
-		float initialY = 0;
+
+		float initialX = Screen.width/2;
+		float initialY = Screen.height/2;
 		pointeurListe = GameObject.FindGameObjectsWithTag ("Pointeur");
 		pointeur = pointeurListe [0];
-		pointeur.transform.position = new Vector3(initialX, initialY, distance);
+		pointeur.transform.position = new Vector3(initialX, initialY, 0);
+		Debug.Log (initialX);
 	}
 	
 	// Update is called once per frame
@@ -29,25 +30,18 @@ public class FollowMouseMovement : MonoBehaviour {
 
 		float origineX = pointeur.transform.position.x;
 		float origineY = pointeur.transform.position.y;
-		float translationX = Input.GetAxis ("Vertical");
-		float translationY = Input.GetAxis("Horizontal");
+		float translationX = Input.GetAxis ("Horizontal");
+		float translationY = Input.GetAxis("Vertical");
 
 		float translationFinalX = origineX + translationX * Time.deltaTime*speed;
-		translationFinalX = checkXlimit (translationFinalX);
+		translationFinalX = checklimit (translationFinalX, xMinLimit, xMaxLimit);
 
 		float translationFinalY = origineY + translationY * Time.deltaTime*speed;
-		translationFinalY = checkYlimit (translationFinalY);
+		translationFinalY =checklimit (translationFinalY, yMinLimit, yMaxLimit); 
 
-		pointeur.transform.position = new Vector3(translationFinalX, translationFinalY, distance);
+		pointeur.transform.position = new Vector3(translationFinalX, translationFinalY, 0f);
 	}
-
-	private float checkXlimit(float position){
-		return checklimit (position, xMinLimit, xMaxLimit); 
-	}
-
-	private float checkYlimit(float position){
-		return checklimit (position, yMinLimit, yMaxLimit);   
-	}
+		
 
 	private float checklimit(float position, float lowLimit, float maxlimit){
 		if (position < lowLimit) {
