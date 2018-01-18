@@ -72,8 +72,8 @@ public class Swap : MonoBehaviour
     IEnumerator Fade(GameObject goingAway, GameObject goingIn, bool isSwapLeft)
     {
         isCoroutineReady = false;
-        goingAway.transform.Find("Capsule").gameObject.SetActive(false);
-        goingIn.transform.Find("Capsule").gameObject.SetActive(true);
+        //goingAway.transform.Find("BulletEmitter").gameObject.SetActive(false);
+        //goingIn.transform.Find("BulletEmitter").gameObject.SetActive(true);
 
         float angle;
         shipMain = goingIn;
@@ -111,6 +111,7 @@ public class Swap : MonoBehaviour
         }
         goingAway.SetActive(!goingAway.activeSelf);
         goingAway.transform.position = new Vector3(0, 0, -6);
+        goingAway.transform.rotation = Quaternion.Euler(new Vector3(-90f, 0, 0));
         isCoroutineReady = true;
         
 
