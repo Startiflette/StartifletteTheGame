@@ -6,6 +6,7 @@ TagManager:
   tags:
   - patternWayPoint
   - Pointeur
+  - WorldStuff
   layers:
   - Default
   - TransparentFX
