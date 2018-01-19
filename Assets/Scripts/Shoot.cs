@@ -12,8 +12,10 @@ public class Shoot : MonoBehaviour {
 	//Enter the Speed of the Bullet from the Component Inspector.
 	public float Bullet_Forward_Force = 500f;
 
+    private GameObject pointer;
 	// Use this for initialization
 	void Start () {
+            pointer = GameObject.FindGameObjectWithTag("Pointeur");
 		
 	}
 	
@@ -27,7 +29,7 @@ public class Shoot : MonoBehaviour {
 
             // Sometimes bullets may appear rotated incorrectly due to the way its pivot was set from the original modeling package.
             // This is EASILY corrected here, you might have to rotate it from a different axis and or angle based on your particular mesh.
-            Temporary_Bullet_Handler.transform.Rotate(Vector3.left * 90);
+            //Temporary_Bullet_Handler.transform.Rotate(Vector3.left * 90);
 
             // Retrieve the Rigidbody component from the instantiated Bullet and control it.
             Rigidbody Temporary_RigidBody;

@@ -23,17 +23,17 @@ public class FollowPointer : MonoBehaviour {
 	void Update () {
         //distance = Screen.height * 0.5f / Mathf.Tan(60 * 0.5f * Mathf.Deg2Rad);
         Camera c = Camera.main;
-        Vector3 desiredPos = c.ScreenToWorldPoint(new Vector3(pointeur.transform.position.x, pointeur.transform.position.y, c.nearClipPlane +6f));
+        Vector3 desiredPos = c.ScreenToWorldPoint(new Vector3(pointeur.transform.position.x, pointeur.transform.position.y, c.nearClipPlane +10f));
         Vector3 smoothedPos = Vector3.Lerp(transform.position, desiredPos, smoothSpeed * Time.deltaTime);
         transform.position = smoothedPos;
         _direction = (desiredPos - transform.position).normalized;
         var dist = Vector3.Distance(desiredPos, transform.position);
 
-        Debug.Log(dist);
+        //Debug.Log(dist);
         if (dist < distanceMin)
         {
-            Debug.Log("Culay");
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.identity, Time.deltaTime * RotationSpeed);
+            //Debug.Log("Culay");
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.identity, Time.deltaTime * RotationSpeed/2);
         }
         else
         {
