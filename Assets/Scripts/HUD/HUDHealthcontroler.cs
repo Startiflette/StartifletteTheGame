@@ -15,13 +15,16 @@ public class HUDHealthcontroler : MonoBehaviour {
 	void Update () {
 		for (int i = 0;i < healthBarList.Length;i++){
 			Slider healtBar = healthBarList [i];
-			changeColor (healtBar);
+			changeBarColor (healtBar);
 		}
 
 		
 	}
 
-	private void changeColor(Slider healthBar){
+	public void changeState(Slider healthbar){
+	}
+
+	private void changeBarColor(Slider healthBar){
 
 		Image healthBarImage = healthBar.fillRect.GetComponent<Image> ();
 		Color green = new Color (0f, 255f, 0f,255f);
