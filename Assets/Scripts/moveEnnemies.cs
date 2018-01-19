@@ -43,18 +43,11 @@ public class moveEnnemies : MonoBehaviour {
 		foreach (Transform child in children) {
 			if (child.tag.Equals("patternWayPoint")) {
 				waypoints[i] = child;
-				//Debug.Log (child.GetType());
 					i++;
 			}
 
 		}
-
-
         StartCoroutine("Spawn");
-
-        //Debug.Log (waypoints [0].position.x);
-
-
     }
 
     // Update is called once per frame
@@ -119,12 +112,9 @@ public class moveEnnemies : MonoBehaviour {
         }
 
 	}
-
-
-
+    
     IEnumerator Spawn()
     {
-
         if (isSpawned)
         {
             yield return null;
