@@ -127,7 +127,7 @@ public class moveEnnemies : MonoBehaviour {
             transformTab[currentNumberOfEnnemies] = ennemyToSpawn.GetComponent<Transform>();
             curWaypoints[currentNumberOfEnnemies] = 0;
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(2);
         }
         isSpawned = true;
     }

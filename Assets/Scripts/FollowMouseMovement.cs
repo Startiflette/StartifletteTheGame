@@ -13,6 +13,7 @@ public class FollowMouseMovement : MonoBehaviour {
 	float xMinLimit = 0;
 	float xMaxLimit = Screen.width;
 
+
 	// Use this for initialization
 	void Start () {
 		

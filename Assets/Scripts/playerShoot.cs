@@ -20,9 +20,9 @@ public class playerShoot : MonoBehaviour {
 		RaycastHit hit;
 		if(Input.GetButtonDown("Fire1")){
 			Ray ray = camera.ScreenPointToRay(pointer.transform.position);
-			Debug.DrawRay (ray.origin, ray.direction * 10, Color.red);
+			//Debug.DrawRay (ray.origin, ray.direction * 10, Color.red);
 			if(Physics.Raycast(ray,out hit,7f)) {
-				Debug.Log (hit.collider.gameObject.name + " was killed");
+				//Debug.Log (hit.collider.gameObject.name + " was killed");
 				Object.Destroy (hit.collider.gameObject);
 			}
 

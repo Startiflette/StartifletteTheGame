@@ -79,6 +79,7 @@ public class ShootRocket : MonoBehaviour
                 IEnumerator coroutine = Follow(temporaryBulletHandler, player);
                 StartCoroutine(coroutine);
                 numberMisileShooted++;
+                Debug.Log("Shooter");
 
                 if (numberMisileShooted < 3)
                 {
