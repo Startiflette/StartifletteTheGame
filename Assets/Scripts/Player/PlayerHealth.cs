@@ -9,7 +9,8 @@ public class PlayerHealth : MonoBehaviour {
 	public int currentHealth;                                   // The current health the player has.
 	public Slider healthSlider;                                 // Reference to the UI's health bar.
 
-	bool isAlive;                                                // Whether the player is dead.
+	bool isAlive = true;
+	bool isActive = false;
 
 	void Start ()
 	{
@@ -56,10 +57,28 @@ public class PlayerHealth : MonoBehaviour {
 		}
 	}
 		
+	void Active ()
+	{
+		isActive = true;
+	}
+
 	void Death ()
 	{
 		// Set the death flag so this function won't be called again.
 		isAlive = false;
 
-	}       
+	}
+
+
+	public Slider HealthSlider {
+		get {
+			return healthSlider;
+		}
+	}
+
+	public bool IsActive {
+		get {
+			return isActive;
+		}
+	}
 }

@@ -5,10 +5,13 @@ using UnityEngine.UI;
 
 public class HUDHealthcontroler : MonoBehaviour {
 
+	public GameObject gameControler;
 	public Slider[] healthBarList;
+
+
 	// Use this for initialization
 	void Start () {
-		
+		gameControler.GetComponent<EventsController> ().activeBarEvent.AddListener (activeBar);
 	}
 	
 	// Update is called once per frame
@@ -21,7 +24,15 @@ public class HUDHealthcontroler : MonoBehaviour {
 		
 	}
 
-	public void changeState(Slider healthbar){
+	public void activeBar(Slider mainHealthbar){
+		
+		mainHealthbar.GetComponent<StateHealthBar> ().ChangeState (StateBarList.stateList.ENABLE);
+		for (int i = 0;i < healthBarList.Length;i++){
+			Slider healtBar = healthBarList [i];
+			if ( healtBar != mainHealthbar){
+				healtBar.GetComponent<StateHealthBar> ().ChangeState (StateBarList.stateList.DISABLE);
+			}
+		}
 	}
 
 	private void changeBarColor(Slider healthBar){

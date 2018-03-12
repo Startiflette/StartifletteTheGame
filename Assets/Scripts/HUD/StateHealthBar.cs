@@ -3,30 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class StateHealthBar : MonoBehaviour {
 
-	public stateList stateHealthBar;
+	public StateBarList.stateList stateHealthBar;
 	public Image icone;
 
-	public enum stateList { ENABLE,DISABLE,DEATH };
+
 	
 	void Update () {
 		IconeUpdate ();
 		BarUpdate ();
 	}
 
-	public void ChangeState(string state){
+	public void ChangeState(StateBarList.stateList etat){
+		stateHealthBar = etat;
 	}
 		
 	private void IconeUpdate(){
 		switch (stateHealthBar) {
-			case stateList.ENABLE:
+		case StateBarList.stateList.ENABLE:
 			icone.color = Color.white;
 				break;
-			case stateList.DISABLE:
+		case StateBarList.stateList.DISABLE:
 			icone.color = Color.black;
 				break;
-			case stateList.DEATH:
+		case StateBarList.stateList.DEATH:
 			icone.color = Color.red;
 				break;
 		} 
@@ -37,13 +39,13 @@ public class StateHealthBar : MonoBehaviour {
 		RectTransform rect = GetComponent<RectTransform> ();
 
 		switch (stateHealthBar) {
-		case stateList.ENABLE:
+		case StateBarList.stateList.ENABLE:
 			expanseBar (rect);
 				break;
-		case stateList.DISABLE:
+		case StateBarList.stateList.DISABLE:
 			reduceBar (rect);
 			break;
-		case stateList.DEATH:
+		case StateBarList.stateList.DEATH:
 			reduceBar (rect);
 			break;
 		} 

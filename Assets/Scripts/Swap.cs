@@ -4,92 +4,86 @@ using UnityEngine;
 
 public class Swap : MonoBehaviour
 {
-
-    public GameObject ship1;
-    public GameObject ship2;
-    public GameObject ship3;
+	public GameObject gameControler;
+    public GameObject[] shipList;
     public Camera mainCamera;
 
-    private GameObject shipMain;
-    private GameObject shipLeft;
-    private GameObject shipRight;
+    private int compteur = 0;
 
-    private bool isCoroutineReady = true;
+	private bool isCoroutineReady;
 
     // Use this for initialization
     void Start()
     {
-        ship1.SetActive(true);
-        ship2.SetActive(false);
-        ship3.SetActive(false);
-
-        shipMain = ship1;
-        shipLeft = ship2;
-        shipRight = ship3;
+		shipList [compteur].SetActive (true);
+		gameControler.GetComponent<EventsController>().activeBarEvent.Invoke (shipList [0].GetComponent<PlayerHealth> ().HealthSlider);
+		shipList [1].SetActive (false);
+		shipList [2].SetActive (false);
+		isCoroutineReady = true;
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if (isCoroutineReady)
-        {
-            //swap Right
-            if (Input.GetKeyDown("e"))
-            {
-                IEnumerator coroutine = Fade(shipMain, shipRight, false);
+	{
+		
+		if (isCoroutineReady) {
+			bool onlyOneShip = isOneAliveShip ();
+			Debug.Log (onlyOneShip);
 
-                StartCoroutine(coroutine);
-                //  Swapping(ship2);
+			if (!onlyOneShip) {
 
-            }
 
-            //swap left
-            if (Input.GetKeyDown("a"))
-            {
-                IEnumerator coroutine = Fade(shipMain, shipLeft, true);
+				if (Input.GetButtonDown ("Switch droite")) {
 
-                StartCoroutine(coroutine);
-            }
-        }
-    }
+					int firstNext = nextNumber (compteur + 1);
+					int secondNext = nextNumber (compteur + 2);
 
-    void Swapping(GameObject ship)
-    {
-        if (ship.activeSelf)
-        {
-            Vector3 backTheFuckUp = new Vector3(0, 0, -7f);
-            transform.position = backTheFuckUp;
-            ship.SetActive(false);
+					if (shipList [firstNext].GetComponent<PlayerHealth> ().IsAlive) {
+						StartCoroutine(Fade (shipList [compteur], shipList [firstNext], "SUIVANT"));
+					} else {
+						StartCoroutine(Fade (shipList [compteur], shipList [secondNext], "SUIVANT"));
+					}
+				} else if (Input.GetButtonDown ("Switch gauche")) {
 
-        }
-        else
-        {
-            ship.SetActive(true);
-            Vector3 backTheFuckUp = new Vector3(-5, 10, 7f);
-            transform.position = backTheFuckUp;
-        }
-    }
-    IEnumerator Fade(GameObject goingAway, GameObject goingIn, bool isSwapLeft)
+					int firstPrevious = previousNumber (compteur - 1);
+					int secondPrevious = previousNumber (compteur - 2);
+					if (shipList [firstPrevious].GetComponent<PlayerHealth> ().IsAlive) {
+						StartCoroutine(Fade (shipList [compteur], shipList [firstPrevious], "PRECEDENT"));
+					} else {
+						StartCoroutine(Fade (shipList [compteur], shipList [secondPrevious], "PRECEDENT"));
+					}
+				}
+			}
+		}
+	}
+		
+	IEnumerator Fade(GameObject actual, GameObject next, string action)
     {
         isCoroutineReady = false;
-        //goingAway.transform.Find("BulletEmitter").gameObject.SetActive(false);
-        //goingIn.transform.Find("BulletEmitter").gameObject.SetActive(true);
 
         float angle;
-        shipMain = goingIn;
-        if (isSwapLeft)
+		int nextInt;
+		if (action.Equals("SUIVANT"))
         {
-            shipLeft = goingAway;
             angle = -180f;
-        }
-        else
-        {
-            shipRight = goingAway;
+			if (compteur + 1 > 2) {
+				nextInt = 0;
+			} else {
+				nextInt = (compteur + 1);
+			}
+
+        } else {
             angle = 180f;
+			if (compteur - 1 < 0) {
+				nextInt = 2;
+			} else {
+				nextInt = compteur - 1;
+			}
         }
-        Vector3 posIn = goingIn.transform.position;
-        Vector3 posAway = goingAway.transform.position;
-        goingIn.SetActive(!goingIn.activeSelf);
+
+		Vector3 posIn = next.transform.position;
+        Vector3 posAway = actual.transform.position;
+		next.SetActive(!next.activeSelf);
 
         Vector3 origin = mainCamera.transform.position;
         Vector3 axis = new Vector3(0, 10f, 0);
@@ -97,23 +91,59 @@ public class Swap : MonoBehaviour
         for (float itCompteur = 0f; itCompteur <= 7f; itCompteur += 0.1f)
         {
             Vector3 moveIn = new Vector3(posIn.x, posIn.y, posIn.z + itCompteur);
-            goingIn.transform.position = moveIn;
+			next.transform.position = moveIn;
 
-            //Vector3 moveAway = new Vector3(posAway.x, posAway.y, posAway.z - itCompteur
-            Debug.Log("origine : " + origin.ToString());
-
-            goingAway.transform.RotateAround(origin, axis, angle*Time.deltaTime*2);
+            actual.transform.RotateAround(origin, axis, angle*Time.deltaTime*2);
             //Debug.Log(moveIn);
 
             
 
             yield return null;
         }
-        goingAway.SetActive(!goingAway.activeSelf);
-        goingAway.transform.position = new Vector3(0, 0, -6);
-        goingAway.transform.rotation = Quaternion.Euler(new Vector3(-90f, 0, 0));
+        actual.SetActive(!actual.activeSelf);
+        actual.transform.position = new Vector3(0, 0, -6);
+        actual.transform.rotation = Quaternion.Euler(new Vector3(-90f, 0, 0));
         isCoroutineReady = true;
-        
+
+		gameControler.GetComponent<EventsController>().activeBarEvent.Invoke (next.GetComponent<PlayerHealth> ().HealthSlider);
 
     }
+
+	int nextNumber (int number)
+	{
+		if (number == 3) {
+			return 0;
+		} else if(number == 4){
+			return 1;
+		} else {
+			return number;
+		}
+	}
+
+	int previousNumber (int number)
+	{
+		if (number == -1) {
+			return 2;
+		} else if(number == -2){
+			return 1;
+		} else {
+			return number;
+		}
+	}
+
+	bool isOneAliveShip(){
+		int count = 0;
+
+		foreach(GameObject ship in shipList){
+			if (ship.GetComponent<PlayerHealth> ().IsAlive) {
+				count++;
+			}
+		}
+
+		if (count <= 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
