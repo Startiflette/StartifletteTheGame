@@ -36,7 +36,7 @@ public class Shoot : MonoBehaviour {
 			Temporary_RigidBody = Temporary_Bullet_Handler.GetComponent<Rigidbody>();
 
 			// Tell the bullet to be "pushed" forward by an amount set by Bullet_Forward_Force. 
-			Temporary_RigidBody.AddForce(transform.forward * Bullet_Forward_Force);
+			Temporary_RigidBody.AddForce(Bullet_Emitter.transform.forward * Bullet_Forward_Force);
 
 			// Basic Clean Up, set the Bullets to self destruct after 10 Seconds, I am being VERY generous here, normally 3 seconds is plenty.
 			Destroy(Temporary_Bullet_Handler,3.0f);
