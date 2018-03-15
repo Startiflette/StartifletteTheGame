@@ -441,7 +441,6 @@ GameObject:
   - component: {fileID: 572655551}
   - component: {fileID: 572655550}
   - component: {fileID: 572655548}
-  - component: {fileID: 572655549}
   - component: {fileID: 572655553}
   - component: {fileID: 572655554}
   - component: {fileID: 572655555}
@@ -469,21 +468,6 @@ MonoBehaviour:
   projectionZ: 0
   distanceMin: 1
   RotationSpeed: 2
---- !u!114 &572655549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114301272846666434, guid: 8d0adf98539b3244db59cf92b97ceccb,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 572655547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2dbf04d21040eb43853960126ad0287, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Bullet_Emitter: {fileID: 515307520}
-  Bullet: {fileID: 85616578}
-  Bullet_Forward_Force: 2000
 --- !u!23 &572655550
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -767,7 +751,7 @@ GameObject:
   - component: {fileID: 804294495}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -972,7 +956,7 @@ GameObject:
   - component: {fileID: 1118494945}
   - component: {fileID: 1118494944}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: EndOfMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1435,7 +1419,6 @@ GameObject:
   - component: {fileID: 1697304589}
   - component: {fileID: 1697304588}
   - component: {fileID: 1697304586}
-  - component: {fileID: 1697304587}
   - component: {fileID: 1697304591}
   - component: {fileID: 1697304592}
   - component: {fileID: 1697304593}
@@ -1463,21 +1446,6 @@ MonoBehaviour:
   projectionZ: 0
   distanceMin: 1
   RotationSpeed: 2
---- !u!114 &1697304587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114131568101119218, guid: 8d0adf98539b3244db59cf92b97ceccb,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1697304585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2dbf04d21040eb43853960126ad0287, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Bullet_Emitter: {fileID: 1311622218}
-  Bullet: {fileID: 1017286117251392, guid: 84fa2f4f90276e5439a21e926ddc2cd0, type: 2}
-  Bullet_Forward_Force: 2000
 --- !u!23 &1697304588
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2030,7 +1998,6 @@ GameObject:
   - component: {fileID: 2080378351}
   - component: {fileID: 2080378350}
   - component: {fileID: 2080378348}
-  - component: {fileID: 2080378349}
   - component: {fileID: 2080378353}
   - component: {fileID: 2080378354}
   - component: {fileID: 2080378355}
@@ -2058,21 +2025,6 @@ MonoBehaviour:
   projectionZ: 0
   distanceMin: 1
   RotationSpeed: 2
---- !u!114 &2080378349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114993175277545534, guid: 8d0adf98539b3244db59cf92b97ceccb,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2080378347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2dbf04d21040eb43853960126ad0287, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Bullet_Emitter: {fileID: 1432325267}
-  Bullet: {fileID: 1746678933}
-  Bullet_Forward_Force: 2000
 --- !u!23 &2080378350
 MeshRenderer:
   m_ObjectHideFlags: 0

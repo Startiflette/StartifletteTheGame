@@ -8,10 +8,14 @@ public class EndOfMap : MonoBehaviour {
 	public Button button;
 	public GameObject gameManager;
 	private Scene scene;
-	// Use this for initialization
-	void Start () {
+
+	void awake() {
 		button.gameObject.SetActive (false);
 		scene = gameManager.GetComponentInChildren<Scene> ();
+	}
+
+	void Start () {
+		
 	}
 	
 	// Update is called once per frame

@@ -8,7 +8,9 @@ public class HUDHealthcontroler : MonoBehaviour {
 	public GameObject gameControler;
 	public Slider[] healthBarList;
 
+	void Awake(){
 
+	}
 	// Use this for initialization
 	void Start () {
 		gameControler.GetComponent<EventsController> ().ActiveBarEvent.AddListener(activeBar);

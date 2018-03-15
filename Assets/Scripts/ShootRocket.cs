@@ -68,7 +68,7 @@ public class ShootRocket : MonoBehaviour
     {
         while (gameObject.activeSelf)
         {
-            player = GameObject.FindGameObjectWithTag("Player");
+            player = GameObject.FindGameObjectWithTag("ship");
             dist = Vector3.Distance(player.transform.position, bulletEmitter.transform.position);
             if (dist < shootRange)
             {

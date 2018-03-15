@@ -82,5 +82,9 @@ public class PlayerHealth : MonoBehaviour {
 		get {
 			return isActive;
 		}
+		set {
+			this.isActive = value;
+			gameObject.SetActive (value);
+		}
 	}
 }

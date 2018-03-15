@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Swap : MonoBehaviour
 {
-	public GameObject gameControler;
     public GameObject[] shipList;
     public Camera mainCamera;
+
+	private GameObject gameController;
 
 	private int shipActive = 0;
 	private int shipsAlive = 3;
@@ -14,14 +15,21 @@ public class Swap : MonoBehaviour
 
 	private bool isCoroutineReady;
 
+	void Awake(){
+		gameController = GameObject.FindGameObjectWithTag ("GameController");
+
+	}
     // Use this for initialization
     void Start()
     {
-		shipList [shipActive].SetActive (true);
-		gameControler.GetComponent<EventsController>().ActiveBarEvent.Invoke (shipList [0].GetComponent<PlayerHealth> ().HealthSlider);
-		gameControler.GetComponent<EventsController>().SwapEvent.AddListener (SwapShips);
-		shipList [1].SetActive (false);
-		shipList [2].SetActive (false);
+		activeShip (shipList [0]);
+
+		gameController.GetComponent<EventsController>().ActiveBarEvent.Invoke (shipList [0].GetComponent<PlayerHealth> ().HealthSlider);
+		gameController.GetComponent<EventsController>().SwapEvent.AddListener (SwapShips);
+
+		DisableShip (shipList [1]);
+		DisableShip (shipList [2]);
+
 		isCoroutineReady = true;
     }
 
@@ -47,7 +55,6 @@ public class Swap : MonoBehaviour
 
 					if ("DEATH".Equals (action)) {
 						shipsAlive--;
-						Debug.Log (shipsAlive);
 						if (shipsAlive == 0) {
 							gameOver = true;
 						}
@@ -87,7 +94,9 @@ public class Swap : MonoBehaviour
 
 		actual.GetComponent<FollowPointer> ().enabled = false;
 		actual.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
-		next.SetActive(true);
+
+		activeShip (next);
+		DisableCursorFollowing (actual);
 
         float angle;
 
@@ -117,18 +126,16 @@ public class Swap : MonoBehaviour
         }
 
         
-        
-		next.GetComponent<FollowPointer> ().enabled = true;
-
-		isCoroutineReady = true;
-
-		actual.SetActive (false);
 		actual.transform.position = standByPosition;
 		actual.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
 
-		next.GetComponent<FollowPointer> ().enabled = true;
-		gameControler.GetComponent<EventsController>().ActiveBarEvent.Invoke (next.GetComponent<PlayerHealth> ().HealthSlider);
 
+		DisableShip (actual);
+		activeCursorFollowing (next);
+
+		gameController.GetComponent<EventsController>().ActiveBarEvent.Invoke (next.GetComponent<PlayerHealth> ().HealthSlider);
+
+		isCoroutineReady = true;
     }
 
 	int nextNumber (int number)
@@ -151,5 +158,25 @@ public class Swap : MonoBehaviour
 		} else {
 			return number;
 		}
+	}
+
+	void activeShip(GameObject ship){
+			
+		ship.GetComponent<PlayerHealth> ().IsActive = true;
+		ship.transform.parent.gameObject.SetActive (true);
+	}
+
+	void DisableShip(GameObject ship){
+		ship.GetComponent<PlayerHealth> ().IsActive = false;
+		ship.transform.parent.gameObject.SetActive (false);
+	}
+
+	void activeCursorFollowing(GameObject ship){
+
+		ship.GetComponent<FollowPointer> ().enabled = true;
+	}
+
+	void DisableCursorFollowing(GameObject ship){
+		ship.GetComponent<FollowPointer> ().enabled = false;
 	}
 }
