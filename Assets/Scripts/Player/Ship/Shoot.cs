@@ -20,10 +20,10 @@ public class Shoot : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		// On pressed left click
-		if (Input.GetMouseButtonDown(0)) {
+		if (Input.GetButtonDown("Tirer")) {
 			//The Bullet instantiation happens here.
 			GameObject Temporary_Bullet_Handler;
-			Temporary_Bullet_Handler = Instantiate(Bullet,Bullet_Emitter.transform.position,Bullet_Emitter.transform.rotation) as GameObject;
+			Temporary_Bullet_Handler = Instantiate(Bullet,Bullet_Emitter.transform.position,Bullet.transform.rotation) as GameObject;
 
             // Sometimes bullets may appear rotated incorrectly due to the way its pivot was set from the original modeling package.
             // This is EASILY corrected here, you might have to rotate it from a different axis and or angle based on your particular mesh.
@@ -34,7 +34,7 @@ public class Shoot : MonoBehaviour {
 			Temporary_RigidBody = Temporary_Bullet_Handler.GetComponent<Rigidbody>();
 
 			// Tell the bullet to be "pushed" forward by an amount set by Bullet_Forward_Force. 
-			Temporary_RigidBody.AddForce(10*Bullet_Emitter.transform.forward * Bullet_Forward_Force);
+			Temporary_RigidBody.AddForce(5*Bullet_Emitter.transform.forward * Bullet_Forward_Force);
 
 			// Basic Clean Up, set the Bullets to self destruct after 10 Seconds, I am being VERY generous here, normally 3 seconds is plenty.
 			Destroy(Temporary_Bullet_Handler,3.0f);

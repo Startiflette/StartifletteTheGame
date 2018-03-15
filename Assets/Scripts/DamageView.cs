@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawn : MonoBehaviour {
+public class DamageView : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,4 +13,9 @@ public class Spawn : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void ShowDamage()
+    {
+
+    }
 }

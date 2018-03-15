@@ -74,13 +74,13 @@ public class ShootRocket : MonoBehaviour
             {
                 //The Bullet instantiation happens here.
                 GameObject temporaryBulletHandler;
-                temporaryBulletHandler = Instantiate(bullet, bulletEmitter.transform.position, bulletEmitter.transform.rotation) as GameObject;
+				temporaryBulletHandler = (GameObject) Instantiate(bullet, bulletEmitter.transform.position, bulletEmitter.transform.rotation);
 
                 IEnumerator coroutine = Follow(temporaryBulletHandler, player);
                 StartCoroutine(coroutine);
                 numberMisileShooted++;
 
-                if (numberMisileShooted < 3)
+                if (numberMisileShooted < 2)
                 {
                     yield return new WaitForSeconds(1);
                 }
