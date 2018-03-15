@@ -28,15 +28,16 @@ public class PlayerHealth : MonoBehaviour {
 		
 	public void TakeDamage (int amount)
 	{
-		// Reduce the current health by the damage amount.
-		currentHealth -= amount;
+		if (isAlive) {
+			currentHealth -= amount;
 
-		// If the player has lost all it's health and the death flag hasn't been set yet...
-		if (currentHealth <= 0) {
-			Death ();
-			healthSlider.value = 0;
-		} else {
-			healthSlider.value = currentHealth;
+			// If the player has lost all it's health and the death flag hasn't been set yet...
+			if (currentHealth <= 0) {
+				Death ();
+				healthSlider.value = 0;
+			} else {
+				healthSlider.value = currentHealth;
+			}
 		}
 	}
 
@@ -66,6 +67,7 @@ public class PlayerHealth : MonoBehaviour {
 	{
 		// Set the death flag so this function won't be called again.
 		isAlive = false;
+		GameObject.FindGameObjectWithTag("GameController").GetComponent<EventsController>().SwapEvent.Invoke ("DEATH");
 
 	}
 

@@ -11,7 +11,7 @@ public class HUDHealthcontroler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		gameControler.GetComponent<EventsController> ().activeBarEvent.AddListener (activeBar);
+		gameControler.GetComponent<EventsController> ().ActiveBarEvent.AddListener(activeBar);
 	}
 	
 	// Update is called once per frame
@@ -25,7 +25,8 @@ public class HUDHealthcontroler : MonoBehaviour {
 	}
 
 	public void activeBar(Slider mainHealthbar){
-		
+
+		Debug.Log ("HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
 		mainHealthbar.GetComponent<StateHealthBar> ().ChangeState (StateBarList.stateList.ENABLE);
 		for (int i = 0;i < healthBarList.Length;i++){
 			Slider healtBar = healthBarList [i];

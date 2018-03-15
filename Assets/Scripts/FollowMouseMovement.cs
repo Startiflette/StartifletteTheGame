@@ -23,7 +23,6 @@ public class FollowMouseMovement : MonoBehaviour {
 		pointeurListe = GameObject.FindGameObjectsWithTag ("Pointeur");
 		pointeur = pointeurListe [0];
 		pointeur.transform.position = new Vector3(initialX, initialY, 0);
-		Debug.Log (initialX);
 	}
 	
 	// Update is called once per frame
